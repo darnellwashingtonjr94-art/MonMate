@@ -52,15 +52,13 @@ class _SocialChessRoomState extends State<SocialChessRoom> {
   void _setupPresence() {
     final channel = Supabase.instance.client.channel('lobby');
 
-    channel
-        .onPresenceSync((payload) {
-          debugPrint('Players online: ${channel.presenceState()}');
-        })
-        .subscribe((status, error) async {
-          if (status == RealtimeSubscribeStatus.subscribed) {
-            await channel.track({'status': 'Online', 'playing': false});
-          }
-        });
+    channel.onPresenceSync((payload) {
+      debugPrint('Players online: ${channel.presenceState()}');
+    }).subscribe((status, error) async {
+      if (status == RealtimeSubscribeStatus.subscribed) {
+        await channel.track({'status': 'Online', 'playing': false});
+      }
+    });
   }
 
   // --- REAL-TIME LAYER: LiveKit Connection ---
