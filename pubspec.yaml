@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_webrtc: ^0.12.0
+
 
   # Blockchain interaction
   web3dart: ^2.7.3
