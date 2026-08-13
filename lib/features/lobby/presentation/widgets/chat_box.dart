@@ -3,7 +3,10 @@ class LobbyChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         children: [
           Expanded(
@@ -20,6 +23,6 @@ class LobbyChat extends StatelessWidget {
     );
   }
 
-  Widget _chatBubble(String user, String msg) => 
-    Padding(padding: EdgeInsets.all(4), child: Text("$user: $msg"));
+  Widget _chatBubble(String user, String msg) =>
+      Padding(padding: EdgeInsets.all(4), child: Text("$user: $msg"));
 }

@@ -2,7 +2,7 @@ import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
 
 class WalletService {
   late Web3App _web3App;
-  
+
   Future<void> initialize() async {
     _web3App = await Web3App.createInstance(
       projectId: 'YOUR_PROJECT_ID', // Get from cloud.walletconnect.com
@@ -20,7 +20,7 @@ class WalletService {
     final ConnectResponse response = await _web3App.connect(
       requiredNamespaces: {
         'eip155': const RequiredNamespace(
-          chains: ['eip155:143'], 
+          chains: ['eip155:143'],
           methods: ['eth_sendTransaction', 'personal_sign'],
           events: ['chainChanged', 'accountsChanged'],
         ),

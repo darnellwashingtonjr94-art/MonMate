@@ -29,7 +29,9 @@ class VideoChatOverlay extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.deepPurpleAccent, width: 2),
       ),
-      child: p != null ? VideoTrackRenderer(p.videoTracks.first as VideoTrack) : Icon(Icons.person),
+      child: p != null
+          ? VideoTrackRenderer(p.videoTracks.first as VideoTrack)
+          : Icon(Icons.person),
     );
   }
 }

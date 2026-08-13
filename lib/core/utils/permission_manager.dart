@@ -8,7 +8,7 @@ class PermissionManager {
       Permission.microphone,
     ].request();
 
-    if (statuses[Permission.camera]!.isGranted && 
+    if (statuses[Permission.camera]!.isGranted &&
         statuses[Permission.microphone]!.isGranted) {
       return true;
     } else {

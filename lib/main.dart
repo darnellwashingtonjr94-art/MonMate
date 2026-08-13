@@ -22,7 +22,9 @@ class MonMateApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.deepPurple,
-        scaffoldBackgroundColor: const Color(0xFF0A0A0A), // Dark "Pulsing" theme
+        scaffoldBackgroundColor: const Color(
+          0xFF0A0A0A,
+        ), // Dark "Pulsing" theme
       ),
       home: const SocialChessRoom(),
     );
@@ -49,14 +51,16 @@ class _SocialChessRoomState extends State<SocialChessRoom> {
   // --- SOCIAL LAYER: Supabase Presence ---
   void _setupPresence() {
     final channel = Supabase.instance.client.channel('lobby');
-    
-    channel.onPresenceSync((payload) {
-      debugPrint('Players online: ${channel.presenceState()}');
-    }).subscribe((status, error) async {
-      if (status == RealtimeSubscribeStatus.subscribed) {
-        await channel.track({'status': 'Online', 'playing': false});
-      }
-    });
+
+    channel
+        .onPresenceSync((payload) {
+          debugPrint('Players online: ${channel.presenceState()}');
+        })
+        .subscribe((status, error) async {
+          if (status == RealtimeSubscribeStatus.subscribed) {
+            await channel.track({'status': 'Online', 'playing': false});
+          }
+        });
   }
 
   // --- REAL-TIME LAYER: LiveKit Connection ---
@@ -83,9 +87,15 @@ class _SocialChessRoomState extends State<SocialChessRoom> {
           // Chess Board Area (Placeholder)
           const Expanded(
             flex: 3,
-            child: Center(child: Icon(Icons.grid_4x4, size: 100, color: Colors.purpleAccent)),
+            child: Center(
+              child: Icon(
+                Icons.grid_4x4,
+                size: 100,
+                color: Colors.purpleAccent,
+              ),
+            ),
           ),
-          
+
           // Social/Real-time Controls
           Container(
             padding: const EdgeInsets.all(16),

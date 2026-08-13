@@ -64,20 +64,12 @@ class PurplePulsePainter extends CustomPainter {
       paint.color = const Color(0xFF6B4DFF).withOpacity(opacity);
 
       double x = i * spacing;
-      canvas.drawLine(
-        Offset(x, 0),
-        Offset(x, size.height),
-        paint,
-      );
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
     }
 
     final Rect rect = Offset.zero & size;
     final Gradient gradient = RadialGradient(
-      colors: [
-        Colors.transparent,
-        Colors.black.withOpacity(0.8),
-        Colors.black,
-      ],
+      colors: [Colors.transparent, Colors.black.withOpacity(0.8), Colors.black],
       stops: const [0.0, 0.7, 1.0],
       radius: 1.2 * pulseValue,
     );
