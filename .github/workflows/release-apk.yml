@@ -32,10 +32,10 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Fix WebRTC Dependency & Install
+      - name: Fix WebRTC & Update Dependencies
         run: |
-          # Automatically update outdated flutter_webrtc in pubspec.yaml to a modern version
-          sed -i 's/flutter_webrtc: .*/flutter_webrtc: ^0.9.48/g' pubspec.yaml
+          rm -f pubspec.lock
+          sed -i '/flutter_webrtc:/c\  flutter_webrtc: ^0.12.9' pubspec.yaml
           flutter pub get
 
       - name: Force Android v2 Migration & Patch Isar
