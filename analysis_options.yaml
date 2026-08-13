@@ -1,8 +1,7 @@
-include: package:flutter_lints/3.0.2/lib/recommended.yaml
+include: package:flutter_lints/recommended.yaml
 
 linter:
   rules:
-    # Add any custom lint overrides here if needed
     avoid_print: true
     prefer_const_constructors: true
 
