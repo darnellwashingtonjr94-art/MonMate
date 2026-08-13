@@ -35,12 +35,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Force Android v2 Migration
+      - name: Force Android v2 Migration & Patch WebRTC/Isar
         run: |
           rm -rf android
           flutter create --platforms=android .
+          
+          # Patch isar_flutter_libs namespace
           cat << 'EOF' >> android/build.gradle
-
           subprojects {
               afterEvaluate { project ->
                   if (project.name == 'isar_flutter_libs' && project.hasProperty('android')) {
