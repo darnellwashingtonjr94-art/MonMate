@@ -1,4 +1,4 @@
-package com.example.monmate; // Keep your actual package name here
+package com.example.monmate;
 
 import io.flutter.embedding.android.FlutterActivity;
 
