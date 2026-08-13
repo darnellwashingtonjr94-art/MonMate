@@ -1,40 +1,12 @@
-name: monmate
-description: High-Frequency Web3 Chess on Monad.
-version: 1.0.0+1
+include: package:flutter_lints/flutter.yaml
 
-environment:
-  sdk: '>=3.1.0 <4.0.0'
+linter:
+  rules:
+    avoid_print: true
+    prefer_const_constructors: true
 
-dependencies:
-  flutter:
-    sdk: flutter
-  
-  # Blockchain interaction
-  web3dart: ^2.7.3
-  walletconnect_flutter_v2: ^2.4.1 # Resolves dependency conflicts
-  
-  # Networking & Storage
-  http: ^1.2.0
-  flutter_secure_storage: ^9.0.0
-  shared_preferences: ^2.2.2
-  
-  # Offline DB
-  isar: ^3.1.0            
-  isar_flutter_libs: ^3.1.0
-  
-  # Presence, Social & Real-time
-  supabase_flutter: ^2.4.0 
-  livekit_client: ^2.1.5  
-  
-  # UI & Utilities
-  animate_do: ^3.3.4
-  permission_handler: ^11.3.1
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^3.0.1
-
-# Ensure your standard Flutter configuration (assets, material design) remains below if present:
-flutter:
-  uses-material-design: true
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
