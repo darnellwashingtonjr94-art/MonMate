@@ -2,10 +2,16 @@ name: Build and Release APK
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
   release:
     types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -32,7 +38,14 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK to Release
+      - name: Upload APK Artifact (Every Run)
+        uses: actions/upload-artifact@v4
+        with:
+          name: MonMate-Release-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload APK to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
