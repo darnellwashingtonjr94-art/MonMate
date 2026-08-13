@@ -41,7 +41,7 @@ jobs:
           flutter create --platforms=android .
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --local-engine-src-path="" || flutter build apk --release
 
       - name: Upload APK Artifact (Every Run)
         uses: actions/upload-artifact@v4
