@@ -1,12 +1,18 @@
 name: MonMate CI
+
 on: [push, pull_request]
 
 jobs:
   forge-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+
       - name: Run Tests
         run: forge test
