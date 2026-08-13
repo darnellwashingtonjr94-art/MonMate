@@ -39,9 +39,23 @@ jobs:
         run: |
           rm -rf android
           flutter create --platforms=android .
+          cat << 'EOF' >> android/build.gradle
+
+          subprojects {
+              afterEvaluate { project ->
+                  if (project.name == 'isar_flutter_libs' && project.hasProperty('android')) {
+                      project.android {
+                          if (namespace == null) {
+                              namespace 'dev.isar.isar_flutter_libs'
+                          }
+                      }
+                  }
+              }
+          }
+          EOF
 
       - name: Build APK
-        run: flutter build apk --release --local-engine-src-path="" || flutter build apk --release
+        run: flutter build apk --release
 
       - name: Upload APK Artifact (Every Run)
         uses: actions/upload-artifact@v4
