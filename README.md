@@ -2,7 +2,7 @@
 
 > High-Frequency Web3 Chess with Real-Time Social Betting on Monad.
 
-[Watch the Globe Data Visualization video](https://drive.google.com/file/d/1jJTGriGXLBn6BgDuoaGBxNX_H68oZiUH/view)
+[Watch the Monmate video](https://drive.google.com/file/d/1cKghKQx4AJoSU7Kq76UqC2_14dPfxGfb/view)
 
 [![Monad Network](https://img.shields.io/badge/Network-Monad_Mainnet-6B4DFF?style=for-the-badge&logo=monero&logoColor=white)](https://monad.xyz)
 [![UI](https://img.shields.io/badge/UI-Animated_Monad_Pulse-6B4DFF?style=for-the-badge)](#)
