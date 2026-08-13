@@ -1,4 +1,4 @@
-name: MonMate Dart CI
+name: MonMate Pipeline CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  dart-lint-format:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -23,3 +23,22 @@ jobs:
 
       - name: Verify Formatting
         run: dart format --set-exit-if-changed .
+
+  forge-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install dependencies
+        run: forge install
+
+      - name: Run tests
+        run: forge test
