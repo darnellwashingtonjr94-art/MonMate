@@ -1,13 +1,13 @@
-include: package:flutter_lints/recommended.yaml
+include: package:flutter_lints/3.0.2/lib/recommended.yaml
 
 linter:
   rules:
-    prefer_const_constructors: true
-    prefer_final_fields: true
-    use_key_in_widget_constructors: true
+    # Add any custom lint overrides here if needed
     avoid_print: true
+    prefer_const_constructors: true
 
 analyzer:
-  exclude:
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
