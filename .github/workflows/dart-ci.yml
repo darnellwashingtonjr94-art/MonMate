@@ -9,9 +9,13 @@ on:
 jobs:
   dart-lint-format:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Flutter/Dart
         uses: subosito/flutter-action@v2
@@ -21,5 +25,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Verify Formatting
-        run: dart format --set-exit-if-changed .
+      - name: Format code
+        run: dart format .
+
+      - name: Commit and push formatted files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: auto-format dart files via CI"
+          branch: ${{ github.head_ref || github.ref_name }}
