@@ -32,17 +32,15 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Fix WebRTC & Update Dependencies
-        run: |
-          rm -f pubspec.lock
-          sed -i '/flutter_webrtc:/c\  flutter_webrtc: ^0.12.9' pubspec.yaml
-          flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Force Android v2 Migration & Patch Isar
+      - name: Force Android v2 Migration & Patch WebRTC/Isar
         run: |
           rm -rf android
           flutter create --platforms=android .
           
+          # Patch isar namespace
           cat << 'EOF' >> android/build.gradle
           subprojects {
               afterEvaluate { project ->
@@ -56,6 +54,14 @@ jobs:
               }
           }
           EOF
+
+          # Patch out the dead v1 Registrar code from cached flutter_webrtc plugin
+          WEBRTC_PLUGIN_DIR=$(find ~/.pub-cache -type d -name "flutter_webrtc*" | head -n 1)
+          if [ -d "$WEBRTC_PLUGIN_DIR" ]; then
+            echo "Patching flutter_webrtc at $WEBRTC_PLUGIN_DIR"
+            find "$WEBRTC_PLUGIN_DIR" -name "FlutterWebRTCPlugin.java" -exec sed -i '/import io.flutter.plugin.common.PluginRegistry.Registrar;/d' {} \;
+            find "$WEBRTC_PLUGIN_DIR" -name "FlutterWebRTCPlugin.java" -exec sed -i '/public static void registerWith(Registrar registrar) {/,/}/d' {} \;
+          fi
 
       - name: Build APK
         run: flutter build apk --release
