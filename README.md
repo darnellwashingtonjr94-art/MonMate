@@ -1,4 +1,5 @@
 # ♟️ MonMate
+
 > High-Frequency Web3 Chess with Real-Time Social Betting on Monad.
 
 [Watch the Globe Data Visualization video](https://drive.google.com/file/d/1jJTGriGXLBn6BgDuoaGBxNX_H68oZiUH/view)
